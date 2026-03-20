@@ -35,6 +35,70 @@
 class Solution {
 public:
     int numberOfSubmatrices(std::vector<std::vector<char>>& grid) {
+        const int rows = grid.size();
+        const int cols = grid[0].size();
+
+        std::vector<int> col_accum(cols, 0);
+        std::vector<bool> col_has_x(cols, false);
         
+        int ans = 0;
+        for (int i = 0; i < rows; ++i) {
+            int row_accum = 0;
+            bool row_has_x = false;
+            for (int j = 0; j < cols; ++j) {
+                if (grid[i][j] == 'X') {
+                    col_has_x[j] = true;
+                    ++col_accum[j];
+                } else if (grid[i][j] == 'Y') {
+                    --col_accum[j];
+                }
+                row_accum += col_accum[j];
+                row_has_x = row_has_x || col_has_x[j];
+                if (row_accum == 0 && row_has_x) {
+                    ++ans;
+                }
+            }
+        }
+        return ans;
     }
 };
+
+void Test1() {
+    std::vector<std::vector<char>> grid = {
+        {'X', 'Y', '.'},
+        {'Y', '.', '.'}
+    };
+    assert(Solution().numberOfSubmatrices(grid) == 3);
+}
+
+void Test2() {
+    std::vector<std::vector<char>> grid = {
+        {'X', 'X'},
+        {'X', 'Y'}
+    };
+    assert(Solution().numberOfSubmatrices(grid) == 0);
+}
+
+void Test3() {
+    std::vector<std::vector<char>> grid = {
+        {'.', '.'},
+        {'.', '.'}
+    };
+    assert(Solution().numberOfSubmatrices(grid) == 0);
+}
+
+void Test4() {
+    std::vector<std::vector<char>> grid = {
+        {'.', 'X'},
+        {'.', 'Y'}
+    };
+    assert(Solution().numberOfSubmatrices(grid) == 1);
+}
+
+int main() {
+    Test1();
+    Test2();
+    Test3();
+    Test4();
+    return 0;
+}
