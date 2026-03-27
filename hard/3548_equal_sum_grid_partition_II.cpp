@@ -52,7 +52,7 @@
 class Solution {
 public:
     bool canPartitionGrid(std::vector<std::vector<int>>& grid) {
-        if (CheckHorizontal(grid)) {
+        if (canPartitionHorizontal(grid)) {
             return true;
         }
 
@@ -67,11 +67,11 @@ public:
             }
             return res;
         }();
-        return CheckHorizontal(transposed_grid);
+        return canPartitionHorizontal(transposed_grid);
     }
 
 private:
-    bool CheckHorizontal(const std::vector<std::vector<int>>& grid) const { 
+    bool canPartitionHorizontal(const std::vector<std::vector<int>>& grid) const { 
         const int rows = grid.size();
         const int cols = grid[0].size();
 
@@ -193,4 +193,5 @@ main() {
     Test3();
     Test4();
     Test5();
+    return 0;
 }
