@@ -5,13 +5,12 @@
  * Используется для профилировки участков кода
  * 
  * Пример использования:
- * ...
- * {
- *     LOG_DURATION("SomeFunction()"s);
- *     SomeFunction();
- * }
- * ...
+ *     {
+ *         LOG_DURATION("SomeFunction()"s);
+ *         SomeFunction();
+ *     }
  */
+
 #include <chrono>
 #include <iostream>
 #include <string>
