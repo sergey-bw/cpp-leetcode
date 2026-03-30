@@ -38,7 +38,7 @@ std::ostream& operator<<(std::ostream& output, const std::vector<T, Alloc>& c) {
 }
 
 // std::array
-template <typename T, size_t N>
+template <typename T, std::size_t N>
 std::ostream& operator<<(std::ostream& output, const std::array<T, N>& c) {
     return PrintContainer(output, c, '[', ']');
 }
@@ -108,7 +108,7 @@ void AssertImpl(bool value, const std::string& expr_str, const std::string& file
 }
 
 #define ASSERT(a) AssertImpl((a), #a, __FILE__, __FUNCTION__, __LINE__)
-#define ASSERT_HINT(a) AssertImpl((a), #a, __FILE__, __FUNCTION__, __LINE__, (hint))
+#define ASSERT_HINT(a, hint) AssertImpl((a), #a, __FILE__, __FUNCTION__, __LINE__, (hint))
 
 template <typename TestFunc>
 void RunTestImpl(const TestFunc& func, const std::string& test_name) {
