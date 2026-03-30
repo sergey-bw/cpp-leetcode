@@ -18,7 +18,8 @@ std::ostream& operator<<(std::ostream& output, const std::pair<First, Second>& p
 }
 
 template <typename Container>
-std::ostream& PrintContainer(std::ostream& output, const Container& container) {
+std::ostream& PrintContainer(std::ostream& output, const Container& container,
+                            char open, char close) {
     output << open;
     bool first_item = true;
     for (const auto& item : container) {
