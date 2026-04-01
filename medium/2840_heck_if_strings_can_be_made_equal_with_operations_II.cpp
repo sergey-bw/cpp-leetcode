@@ -25,40 +25,41 @@
  * 
  * Constraints:
  *     n == s1.length == s2.length
- *     1 <= n <= 105
+ *     1 <= n <= 10^5
  *     s1 and s2 consist only of lowercase English letters.
  */
 
 #include <cassert>
 #include <string>
 #include <array>
-#include <cstdint>
 
 class Solution {
 public:
-    bool checkStrings(std::string s1, std::string s2) {
-        constexpr size_t ALPHABET_SIZE = 26;
-        std::array<int8_t, ALPHABET_SIZE> even_count{0};
-        std::array<int8_t, ALPHABET_SIZE> odd_count{0};
+    bool checkStrings(const std::string& s1, const std::string& s2) {
+        constexpr size_t kAlphabetSize = 26;
+        std::array<int, kAlphabetSize> even_freq_diff{};
+        std::array<int, kAlphabetSize> odd_freq_diff{};
+        
         for (size_t i = 0; i < s1.length(); ++i) {
+            const int s1_index = s1[i] - 'a';
+            const int s2_index = s2[i] - 'a';
             if (i & 1) {
-                ++even_count[s1[i] - 'a'];
-                --even_count[s2[i] - 'a'];
+                ++odd_freq_diff[s1_index];
+                --odd_freq_diff[s2_index];
             } else {
-                ++odd_count[s1[i] - 'a'];
-                --odd_count[s2[i] - 'a'];
+                ++even_freq_diff[s1_index];
+                --even_freq_diff[s2_index];
             }
         }
 
-        for (size_t i = 0; i < even_count.size(); ++i) {
-            if (even_count[i] != 0 || odd_count[i] != 0) {
+        for (size_t i = 0; i < even_freq_diff.size(); ++i) {
+            if (even_freq_diff[i] != 0 || odd_freq_diff[i] != 0) {
                 return false;
             }
         }
         return true;
     }
 };
-
 
 void Test1() {
     assert(Solution().checkStrings("abcdba", "cabdab") == true);
