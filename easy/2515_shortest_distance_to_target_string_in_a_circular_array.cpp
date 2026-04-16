@@ -46,6 +46,41 @@
 class Solution {
 public:
     int closestTarget(const std::vector<std::string>& words, const std::string& target, int startIndex) {
-        
+        const size_t n = words.size();
+        const size_t start_idx = static_cast<size_t>(startIndex);
+        for (size_t offset = 0; offset <= n / 2; ++offset) {
+            size_t left_idx = (start_idx + n - offset) % n;
+            size_t right_idx = (start_idx + offset) % n;
+            if (words[left_idx] == target
+                || (left_idx != right_idx && words[right_idx] == target)) {
+                return offset;
+            }
+        }
+        return -1;
     }
 };
+
+void Test1() {
+    const std::vector<std::string> words = {"hello", "i", "am", "leetcode", "hello"};
+    const std::string target = "hello";
+    assert(Solution().closestTarget(words, target, 1) == 1);
+}
+
+void Test2() {
+    const std::vector<std::string> words = {"a","b","leetcode"};
+    const std::string target = "leetcode";
+    assert(Solution().closestTarget(words, target, 0) == 1);
+}
+
+void Test3() {
+    const std::vector<std::string> words = {"i","eat","leetcode"};
+    const std::string target = "ate";
+    assert(Solution().closestTarget(words, target, 0) == -1);
+}
+
+int main() {
+    Test1();
+    Test2();
+    Test3();
+    return 0;
+}
