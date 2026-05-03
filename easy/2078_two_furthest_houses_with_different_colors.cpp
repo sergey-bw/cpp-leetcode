@@ -46,34 +46,19 @@
 class Solution {
 public:
     int maxDistance(const std::vector<int>& colors) {
-        const size_t n = colors.size();
-        size_t ans = 0;
-        for (size_t i = 0; i < n; ++i) {
-            if (colors[i] != colors.back()) {
-                ans = i;
-                break;
-            }
-        }
-        for (size_t i = 0; i < ans; ++i) {
-            if (colors[n - i - 1] != colors.front()) {
-                ans = std::min(ans, i);
-                break;
-            }
-        }
-
-         return n - ans - 1;
-
-
-        // int left = 0;
-        // while (colors[left] == colors.back()) {
-        //     ++left;
-        // }
+        const int n = static_cast<int>(colors.size());
         
-        // int right = colors.size() - 1;
-        // while (colors[right] == colors.front()) {
-        //     --right;
-        // }
-        // return std::max(static_cast<int>(colors.size()) - left -1, right);
+        int left = 0;
+        while (colors[left] == colors.back()) {
+            ++left;
+        }
+        
+        int right = n - 1;
+        while (colors[right] == colors.front()) {
+            --right;
+        }
+        
+        return std::max(n - 1 - left, right);
     }
 };
 
