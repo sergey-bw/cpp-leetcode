@@ -70,7 +70,7 @@ public:
         // Поворот по часовой стрелке
         const int rows = static_cast<int>(boxGrid.size());
         const int cols = static_cast<int>(boxGrid[0].size());
-        std::vector<std::vector<char>> res(cols, std::vector<char>(rows, ' '));
+        std::vector<std::vector<char>> res(cols, std::vector<char>(rows, '?'));
         for (int i = 0; i < rows; ++i) {
             for (int j = 0; j < cols; ++j) {
                 res[j][rows - i - 1] = boxGrid[i][j];
