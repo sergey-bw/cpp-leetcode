@@ -39,3 +39,9 @@ void Test2() {
     std::vector<int> nums = {1, 5, 11, 5};
     assert(Solution().canPartition(nums) == false);
 }
+
+int main() {
+    Test1();
+    Test2();
+    return 0;
+}
