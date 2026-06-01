@@ -56,6 +56,26 @@ public:
         }
         return true;
     }
+
+    bool asteroidsDestroyedv2(int mass, const std::vector<int>& asteroids) {
+        constexpr int kMaxAsteroidMass = 100000;
+        std::vector<int> counts(kMaxAsteroidMass + 1, 0);
+
+        for (const int asteroid : asteroids) {
+            ++counts[asteroid];
+        }
+
+        uint64_t planet_mass = mass;
+        for (int i = 1; i <= kMaxAsteroidMass; ++i) {
+            if (counts[i] > 0) {
+                if (static_cast<uint64_t>(i) > planet_mass) {
+                    return false;
+                }
+                planet_mass += static_cast<uint64_t>(i) * counts[i];
+            }
+        }
+        return true;
+    }
 };
 
 void Test1() {
