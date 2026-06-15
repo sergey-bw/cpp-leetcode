@@ -5,9 +5,6 @@
  * You are given the head of a linked list. Delete the middle node, and return 
  * the head of the modified linked list.
  * 
- * The middle node of a linked list of size n is the ⌊n / 2⌋th node from the start 
- * using 0-based indexing.
- * 
  * Example 1:
  *     Input: head = [1,3,4,7,1,2,6]
  *     Output: [1,3,4,1,2,6]
@@ -19,17 +16,12 @@
  * Example 3:
  *     Input: head = [2,1]
  *     Output: [2]
- * 
- * Constraints:
- *     The number of nodes in the list is in the range [1, 10^5].
- *     1 <= Node.val <= 10^5
  */
 
 #include <cassert>
 #include <vector>
 #include <iostream>
 
-// Definition for singly-linked list.
 struct ListNode {
     int val;
     ListNode *next;
@@ -41,15 +33,18 @@ struct ListNode {
 class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
-        if (head->next == nullptr) {
-            delete head;
+        if (head == nullptr || head->next == nullptr) {
             return nullptr;
         }
 
-        ListNode* fast_ptr = head;
+        ListNode* fast_ptr = head->next->next;
         ListNode* slow_ptr = head;
-        while (fast_ptr->next != nullptr)
+        while (fast_ptr != nullptr && fast_ptr->next != nullptr) {
+            slow_ptr = slow_ptr->next;
+            fast_ptr = fast_ptr->next->next;
+        }
 
+        slow_ptr->next = slow_ptr->next->next;
         return head;
     }
 };
