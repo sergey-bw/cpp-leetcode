@@ -32,11 +32,11 @@
 
 class Solution {
 public:
-    int largestAltitude(std::vector<int>& gain) {
+    int largestAltitude(const std::vector<int>& gain) {
         int max_altitude = 0;
         int current_altitude = 0;
-        for (int altitude : gain) {
-            current_altitude += altitude;
+        for (const int diff : gain) {
+            current_altitude += diff;
             max_altitude = std::max(max_altitude, current_altitude);
         }
         return max_altitude;
