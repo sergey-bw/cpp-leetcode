@@ -30,23 +30,19 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class Solution {
 public:
     int numberOfSubstringsV2(const std::string& s) {
         const size_t n = s.length();
-        const size_t kAlphabetSize = 26;
-        std::vector<int> char_freq(kAlphabetSize, 0);
+        std::vector<int> char_freq(3, 0); // Строка содержит только символы 'a', 'b', 'c'
         size_t left = 0;
         size_t right = 0;
         int count = 0;
         while (right < n) {
             ++char_freq[s[right] - 'a'];
-            while (
-                char_freq['a' - 'a'] > 0
-                && char_freq['b' - 'a'] > 0
-                && char_freq['c' - 'a'] > 0
-            ) {
+            while (*std::min_element(char_freq.begin(), char_freq.end()) > 0) {
                 count += n - right;
                 --char_freq[s[left] - 'a'];
                 ++left;
@@ -57,10 +53,10 @@ public:
     }
 
     int numberOfSubstrings(const std::string& s) {
+        const int n = s.length();
         std::vector<int> last_seen(3, -1);
         int res = 0;
-        
-        for (int right = 0; right < s.length(); ++right) {
+        for (int right = 0; right < n; ++right) {
             last_seen[s[right] - 'a'] = right;
             int min_idx = std::min({last_seen[0], last_seen[1], last_seen[2]});
             // Если все три буквы уже встречались (min_idx != -1)
