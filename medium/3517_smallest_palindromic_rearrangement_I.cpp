@@ -2,41 +2,74 @@
  * 3517. Smallest Palindromic Rearrangement I
  * https://leetcode.com/problems/smallest-palindromic-rearrangement-i/
  * 
- * TODO: Copy problem description here.
+ * You are given a palindromic string s.
+ * Return the lexicographically smallest palindromic permutation of s.
+ * 
+ * Example 1:
+ *     Input: s = "z"
+ *     Output: "z"
+ *     Explanation: A string of only one character is already the lexicographically smallest palindrome.
+ * 
+ * Example 2:
+ *     Input: s = "babab"
+ *     Output: "abbba"
+ *     Explanation: Rearranging "babab" -> "abbba" gives the smallest lexicographic palindrome.
+ * 
+ * Example 3:
+ *     Input: s = "daccad"
+ *     Output: "acddca"
+ *     Explanation: Rearranging "daccad" -> "acddca" gives the smallest lexicographic palindrome.
+ * 
+ * Constraints:
+ *     1 <= s.length <= 10^5
+ *     s consists of lowercase English letters.
+ *     s is guaranteed to be palindromic.
  */
 
-#include <iostream>
-#include <string>
-#include <vector>
 #include <cassert>
+#include <string>
+#include <iostream>
+#include <algorithm>
 
 class Solution {
 public:
-    // Вставь точную сигнатуру метода с LeetCode здесь:
-    std::string smallestPalindromic(std::string s) {
-        
+    std::string smallestPalindrome(const std::string& s) {
+        const size_t n = s.length();
+        if (n < 4) {
+            return s;
+        }
+        std::string result;
+        result.reserve(n);
+        result.copy(s[0], 0, n / 2);
         return "";
     }
 };
 
 void Test1() {
-    Solution sol;
-    // Раскомментируй и вставь примеры из задачи:
-    // std::string s = "example_input";
-    // std::string expected = "example_output";
-    // assert(sol.smallestPalindromic(s) == expected);
+    std::string s = "z";
+    std::string expected = "z";
+    std::string result = Solution().smallestPalindrome(s);
+    assert(result == expected);
 }
 
 void Test2() {
-    Solution sol;
-    // std::string s = "example_input_2";
-    // std::string expected = "example_output_2";
-    // assert(sol.smallestPalindromic(s) == expected);
+    std::string s = "babab";
+    std::string expected = "abbba";
+    std::string result = Solution().smallestPalindrome(s);
+    assert(result == expected);
+}
+
+void Test3() {
+    std::string s = "daccad";
+    std::string expected = "acddca";
+    std::string result = Solution().smallestPalindrome(s);
+    assert(result == expected);
 }
 
 int main() {
     Test1();
     Test2();
+    Test3();
     std::cout << "All tests passed!" << std::endl;
     return 0;
 }
