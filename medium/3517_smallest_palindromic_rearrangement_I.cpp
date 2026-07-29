@@ -30,10 +30,11 @@
 #include <string>
 #include <iostream>
 #include <algorithm>
+#include <array>
 
 class Solution {
 public:
-    std::string smallestPalindrome(std::string s) {
+    std::string smallestPalindromeV2(std::string s) {
         const int n = s.length();
         if (n < 4) {
             return s; // Строки из 1, 2 и 3 символов-палиндромов уже минимальны
@@ -44,6 +45,34 @@ public:
         
         // 2. Сортируем правую половину в обратном порядке 
         std::sort(s.rbegin(), s.rbegin() + n / 2);
+        
+        return s;
+    }
+
+    std::string smallestPalindrome(std::string s) {
+        const size_t n = s.length();
+        if (n < 4) {
+            return s;
+        }
+
+        // 1. Подсчет частот строго в левой половине
+        const size_t kAlphaSize = 26;
+        std::array<int, kAlphaSize> char_counts = {0};
+        for (size_t i = 0; i < n / 2; ++i) {
+            ++char_counts[s[i] - 'a'];
+        }
+
+        // 2. Зеркальная сборка двух половин строки
+        size_t left_idx = 0;
+        size_t right_idx = n - 1;
+        for (size_t i = 0; i < kAlphaSize; ++i) {
+            while (char_counts[i] > 0) {
+                const char c = static_cast<char>('a' + i);
+                s[left_idx++] = c;
+                s[right_idx--] = c;
+                --char_counts[i];
+            }
+        }
         
         return s;
     }
