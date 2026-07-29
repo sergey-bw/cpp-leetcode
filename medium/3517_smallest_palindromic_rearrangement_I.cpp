@@ -33,15 +33,19 @@
 
 class Solution {
 public:
-    std::string smallestPalindrome(const std::string& s) {
-        const size_t n = s.length();
+    std::string smallestPalindrome(std::string s) {
+        const int n = s.length();
         if (n < 4) {
-            return s;
+            return s; // Строки из 1, 2 и 3 символов-палиндромов уже минимальны
         }
-        std::string result;
-        result.reserve(n);
-        result.copy(s[0], 0, n / 2);
-        return "";
+        
+        // 1. Сортируем левую половину (от начала до середины)
+        std::sort(s.begin(), s.begin() + n / 2);
+        
+        // 2. Сортируем правую половину в обратном порядке 
+        std::sort(s.rbegin(), s.rbegin() + n / 2);
+        
+        return s;
     }
 };
 
