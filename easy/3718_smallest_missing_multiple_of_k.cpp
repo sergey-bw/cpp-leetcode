@@ -24,24 +24,22 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
+#include <array>
 
 class Solution {
 public:
     int missingMultiple(const std::vector<int>& nums, int k) {
-        const int kMaxNumsValue = 100; // Входное ограничение
-        std::vector<int> count_nums(kMaxNumsValue + 1, 0);
+        constexpr int kMaxNumValue = 100;
+        std::array<bool, kMaxNumValue + 1> is_present{};
         for (int num : nums) {
-            ++count_nums[num];
+            is_present[num] = true;
         }
 
-        int ans = k;
-        for (int i = 1; ; ++i) {
-            ans = k * i;
-            if (ans > kMaxNumsValue || count_nums[ans] == 0) {
-                break;
-            }
+        int multiple = k;
+        while (multiple <= kMaxNumValue && is_present[multiple]) {
+            multiple += k;
         }
-        return ans;
+        return multiple;
     }
 };
 
