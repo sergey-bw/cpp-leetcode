@@ -39,43 +39,40 @@
 class Solution {
 public:
     std::string shortestBeautifulSubstring(const std::string& s, int k) {
-        const int n = s.length();
-        if (n < k) {
-            return "";
-        }
-
-        int left = 0;
-        while (left!= n && s[left] == 0) {
-            ++left;
-        }
-        int right = left;
-
+        const int n = static_cast<int>(s.length());
         int best_left = 0;
-        int best_right = 0;
-        int ones_count = 0;
         int best_len = n + 1;
+        int ones_count = 0;
 
-        while (right < n - 1) {
-            if (ones_count == k) {
-                int curr_len = left - right + 1;
-                if (curr_len < best_len) {
-                    best_left = left;
-                    best_right = right;
-                    best_len = curr_len;
-                } else if (curr_len == best_len) {
-                    
-                }
+        for (int left = 0, right = 0; right < n; ++right) {
+            if (s[right] == '1') {
+                ++ones_count;
             }
 
-            if (ones_count < k) {
-                ++right;
-            } else {
-                ++left;
-            } 
+            if (ones_count != k) {
+                continue;
+            }
 
+            while (s[left] == '0') {
+                ++left;
+            }
+
+            const int candidate_len = right - left + 1;
+            const bool is_better =
+                candidate_len < best_len ||
+                (candidate_len == best_len &&
+                 s.compare(left, candidate_len, s, best_left, best_len) < 0);
+
+            if (is_better) {
+                best_left = left;
+                best_len = candidate_len;
+            }
+
+            ++left;
+            --ones_count;  // Удаляем ведущую '1', чтобы продолжить поиск.
         }
 
-        return "";
+        return best_len > n ? "" : s.substr(best_left, best_len);
     }
 };
 
