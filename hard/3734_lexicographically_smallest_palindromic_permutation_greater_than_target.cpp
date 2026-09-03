@@ -65,7 +65,6 @@ public:
         for (char c : s) {
             ++freq_char[c - 'a'];
         }
-
         // 2. Подготовка массива для построения палиндрома
         //    и поиск центрального символа для нечетной длины строки
         std::array<int, kAlphaSize> freq_half_char{0};
