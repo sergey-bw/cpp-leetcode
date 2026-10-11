@@ -35,7 +35,7 @@
 
 class Solution {
 public:
-    int minPartitions(std::string n) {
+    int minPartitions(const std::string& n) {
         // n.length() > 0 по условию
         return *std::max_element(n.cbegin(), n.cend()) - '0';
     }

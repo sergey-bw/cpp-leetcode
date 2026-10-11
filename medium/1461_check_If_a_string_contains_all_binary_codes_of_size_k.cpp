@@ -33,7 +33,7 @@
 
 class Solution {
 public:
-    bool hasAllCodes(std::string s, int k) {
+    bool hasAllCodes(const std::string& s, int k) {
         size_t substr_count = static_cast<size_t>(1) << k; 
         if (s.length() < static_cast<size_t>(k) || s.length() - k + 1 < substr_count) {
             return false;

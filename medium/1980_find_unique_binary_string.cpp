@@ -38,7 +38,7 @@
 // Диагональный аргумент Кантора
 class Solution {
 public:
-    std::string findDifferentBinaryString(std::vector<std::string>& nums) {
+    std::string findDifferentBinaryString(const std::vector<std::string>& nums) {
         std::string ans(nums[0].length(), '0');
         for (size_t i = 0; i < nums.size(); i++) {
             char curr = nums[i][i];

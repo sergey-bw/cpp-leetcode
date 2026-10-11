@@ -39,7 +39,7 @@
 
 class Solution {
 public:
-    int minFlips(std::string s) {
+    int minFlips(const std::string& s) {
         const int n = s.size();
         int diff0 = 0;
         

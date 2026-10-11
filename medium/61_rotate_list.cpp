@@ -26,7 +26,7 @@
  *     0 <= k <= 2 * 10^9
  */
 
- #include <cassert>
+#include <cassert>
 #include <vector>
 #include <iostream>
 

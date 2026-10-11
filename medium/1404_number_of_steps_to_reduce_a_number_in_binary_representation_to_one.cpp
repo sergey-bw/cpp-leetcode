@@ -40,7 +40,7 @@
 
 class Solution {
 public:
-    int numSteps(std::string s) {
+    int numSteps(const std::string& s) {
         if (s.empty() || s == "1") {
             return 0;
         }

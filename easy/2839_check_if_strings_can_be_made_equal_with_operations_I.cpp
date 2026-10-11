@@ -32,17 +32,13 @@
 
 class Solution {
 public:
-    bool canBeEqual(std::string s1, std::string s2) {
-        for (size_t i = 0; i < s1.length(); ++i) {
+    bool canBeEqual(std::string s1, const std::string& s2) {
+        for (size_t i = 0; i < 2; ++i) {
             if (s1[i] != s2[i]) {
-                if (i + 2 < s1.length() && s1[i] == s1[i + 2]) {
-                    std::swap(s1[i], s1[i+2]);
-                } else {
-                    return false;
-                }
+                std::swap(s1[i], s1[i + 2]);
             }
         }
-        return true;
+        return s1 == s2;
     }
 };
 

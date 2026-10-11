@@ -51,7 +51,7 @@
 
 class Solution {
 public:
-    bool canPartitionGrid(std::vector<std::vector<int>>& grid) {
+    bool canPartitionGrid(const std::vector<std::vector<int>>& grid) {
         if (canPartitionHorizontal(grid)) {
             return true;
         }

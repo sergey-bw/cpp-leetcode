@@ -37,7 +37,7 @@
 
 class Solution {
 public:
-    std::vector<int> sortByBits(std::vector<int>& arr) {
+    std::vector<int> sortByBits(const std::vector<int>& arr) {
         std::vector<unsigned char> count_bits(*std::max_element(arr.begin(), arr.end()) + 1, 0);
         for (size_t i = 1; i < count_bits.size(); ++i) {
             // Подсчет бит со значением 1

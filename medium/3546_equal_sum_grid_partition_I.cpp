@@ -30,7 +30,7 @@
 
 class Solution {
 public:
-    bool canPartitionGrid(std::vector<std::vector<int>>& grid) {
+    bool canPartitionGrid(const std::vector<std::vector<int>>& grid) {
         const int rows = grid.size();
         const int cols = grid[0].size();
         std::vector<int64_t> rows_sums(rows);

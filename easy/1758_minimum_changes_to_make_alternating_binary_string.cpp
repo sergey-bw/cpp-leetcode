@@ -36,7 +36,7 @@
 
 class Solution {
 public:
-    int minOperations(std::string s) {
+    int minOperations(const std::string& s) {
         int mismatches = 0;
         for (size_t i = 0; i < s.length(); ++i) {
             const char expected = "01"[i & 1];

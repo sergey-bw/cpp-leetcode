@@ -24,7 +24,7 @@
 
 class Solution {
 public:
-    bool checkOnesSegment(std::string s) {
+    bool checkOnesSegment(const std::string& s) {
         return s.find("01") == std::string::npos;
     }
 };

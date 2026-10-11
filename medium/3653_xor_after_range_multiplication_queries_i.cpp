@@ -43,7 +43,7 @@
 
 class Solution {
 public:
-    int xorAfterQueries(std::vector<int>& nums, std::vector<std::vector<int>>& queries) {
+    int xorAfterQueries(std::vector<int>& nums, const std::vector<std::vector<int>>& queries) {
         long long kMOD = 1e9 + 7;
         for (const auto& query : queries) {
             const int l = query[0];

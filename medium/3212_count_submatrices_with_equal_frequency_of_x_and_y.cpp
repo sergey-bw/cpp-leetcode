@@ -34,7 +34,7 @@
 
 class Solution {
 public:
-    int numberOfSubmatrices(std::vector<std::vector<char>>& grid) {
+    int numberOfSubmatrices(const std::vector<std::vector<char>>& grid) {
         const int rows = grid.size();
         const int cols = grid[0].size();
 

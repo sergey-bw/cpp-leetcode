@@ -52,7 +52,7 @@
 
 class Solution {
 public:
-    bool areSimilar(std::vector<std::vector<int>>& mat, int k) {
+    bool areSimilar(const std::vector<std::vector<int>>& mat, int k) {
         const int rows = mat.size();
         const int cols = mat[0].size();
 

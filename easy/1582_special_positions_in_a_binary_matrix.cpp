@@ -34,7 +34,7 @@
 
 class Solution {
 public:
-    int numSpecial(std::vector<std::vector<int>>& mat) {
+    int numSpecial(const std::vector<std::vector<int>>& mat) {
         size_t rows = mat.size();
         size_t cols = mat[0].size();
         std::vector<int> row_count_ones(rows, 0);

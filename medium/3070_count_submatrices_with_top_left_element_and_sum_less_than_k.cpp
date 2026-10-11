@@ -44,7 +44,7 @@
 
 class Solution {
 public:
-    int countSubmatrices(std::vector<std::vector<int>>& grid, int k) {
+    int countSubmatrices(const std::vector<std::vector<int>>& grid, int k) {
         if (grid[0][0] > k) {
             return 0;
         }

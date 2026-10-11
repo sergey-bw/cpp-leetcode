@@ -54,7 +54,7 @@ public:
         return res;
     }
 
-    int minSwaps(std::vector<std::vector<int>>& grid) {
+    int minSwaps(const std::vector<std::vector<int>>& grid) {
         std::vector<int> count_zeros = CountRightZeros(grid);
         int n = static_cast<int>(count_zeros.size());
         int total_swaps = 0;

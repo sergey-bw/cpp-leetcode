@@ -35,7 +35,7 @@
 
 class Solution {
 public:
-    int numberOfSpecialChars(std::string word) {
+    int numberOfSpecialChars(const std::string& word) {
         constexpr size_t kSize = 26;
         std::array<bool, kSize> has_upper{0};
         std::array<bool, kSize> has_lower{0};
@@ -56,7 +56,7 @@ public:
         return count;
     }
 
-    int numberOfSpecialCharsV2(std::string word) { // bit_mask
+    int numberOfSpecialCharsV2(const std::string& word) { // bit_mask
         uint32_t upper_bit_mask = 0;
         uint32_t lower_bit_mask = 0;
 
