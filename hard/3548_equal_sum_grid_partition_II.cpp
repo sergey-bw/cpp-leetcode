@@ -187,7 +187,7 @@ void Test5() {
     assert(Solution().canPartitionGrid(grid) == true);
 }
 
-main() {
+int main() {
     Test1();
     Test2();
     Test3();
